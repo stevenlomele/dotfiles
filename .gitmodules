@@ -1,0 +1,3 @@
+[submodule "ext/solarized"]
+  path = ext/solarized
+	url = https://github.com/altercation/solarized.git
