@@ -1,0 +1,49 @@
+#! /bin/bash
+
+# Download Inconsolata font and move to ~/Library/Fonts/
+
+# Variables:
+srcB="./Inconsolata-Bold.ttf"
+srcR="./Inconsolata-Regular.ttf"
+destB="$HOME/Library/Fonts/Inconsolata-Bold.ttf"
+destR="$HOME/Library/Fonts/Inconsolata-Regular.ttf"
+  #Color
+  colBlu=$(tput setaf 4)
+  colRed=$(tput setaf 1)
+  colYel=$(tput setaf 3)
+  colRst=$(tput sgr0)
+
+# To-Do:
+#  Add macOS operating system check
+#  Update echo in favor of printf
+#  Update source/desination file check
+
+clear
+
+printf "%s\n\n" "${colBlu}Installing Inconsolata font to ~/Library/Fonts/${colRst}"
+
+printf "%s\n\n" "${colYel}Downloading Inconsolata...${colRst}"
+curl -LO# https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Bold.ttf \
+  -LO# https://github.com/google/fonts/blob/master/ofl/inconsolata/Inconsolata-Regular.ttf
+printf "\n%s\n\n" "${colYel}Font download complete.${colRst}"
+printf "%s\n\n" "${colYel}Moving fonts to ~/Library/Fonts/ & cleaning-up download directory.${colRst}"
+
+if [ -e $destB ]; then
+  printf "%s\n" "${colRed}Inconsolata-Bold already installed.${colRst}"
+else
+  mv -i $srcB $destB
+fi
+if [ -e $destR ]; then
+  printf "%s\n" "${colRed}nconsolata-Regular already installed.${colRst}"
+else
+  mv -i $srcR $destR
+fi
+
+rm -rf $srcB $srcR
+
+printf "\n%s\n" "${colBlu}Install complete.${colRst}"
+# echo "Press any key to exit..."
+# read -s -n 1 key_press
+# echo ""
+# echo "Goodbye!"
+exit 0
